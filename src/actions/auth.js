@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
 // the middleware to call the API for quotes
-import { CALL_API } from './middleware/api';
+import { CALL_API } from '../middleware/api';
 
 import C from '../constants';
 
@@ -28,7 +28,7 @@ function loginError(message) {
         type: C.LOGIN_FAILURE,
         isFetching: false,
         isLoggedIn: false,
-        message
+        error: message
     };
 }
 
@@ -58,6 +58,34 @@ export function loginUser(creds) {
             localStorage.setItem('token', user.token);
             // Dispatch the success action
             dispatch(receiveLogin(user));
-        }).catch(err => console.log("uh oh"));
+        }).catch(err => {
+            console.log(err);
+            dispatch(loginError("There was an error connecting to the server."));
+        });
     };
+}
+
+function requestLogout() {
+    return {
+        type: C.LOGOUT_REQUEST,
+        isFetching: true,
+        isAuthenticated: true
+    };
+}
+
+function receiveLogout() {
+    return {
+        type: C.LOGOUT_SUCCESS,
+        isFetching: false,
+        isAuthenticated: false
+    };
+}
+
+// Logs the user out
+export function logoutUser() {
+    return dispatch => {
+        dispatch(requestLogout());
+        localStorage.removeItem('id_token');
+        dispatch(receiveLogout());
+    }
 }

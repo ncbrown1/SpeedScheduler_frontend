@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { resetErrorMessage } from '../actions/errorMessage';
-import Navbar from '../components/Navbar';
+import AppNav from '../components/AppNav';
 import Footer from '../components/Footer';
 
 class App extends Component {
@@ -28,22 +28,21 @@ class App extends Component {
     }
 
     return (
-      <p style={{ backgroundColor: '#e99', padding: 10 }}>
+      <div className="alert alert-danger">
         <b>{errorMessage}</b>
         {' '}
-        (<a href="#"
-            onClick={this.handleDismissClick}>
+        (<a style={{cursor:"pointer"}} onClick={this.handleDismissClick}>
           Dismiss
         </a>)
-      </p>
+      </div>
     );
   }
 
   render() {
-    const { children } = this.props;
+    const { dispatch, auth, children } = this.props;
     return (
       <div>
-        <Navbar />
+        <AppNav auth={auth} />
         <div className="container">
           {this.renderErrorMessage()}
           {children}
@@ -58,6 +57,7 @@ App.propTypes = {
   // Injected by React Redux
   errorMessage: PropTypes.string,
   resetErrorMessage: PropTypes.func.isRequired,
+  auth: PropTypes.object,
   // inputValue: PropTypes.string.isRequired,
   // Injected by React Router
   children: PropTypes.node
@@ -66,7 +66,8 @@ App.propTypes = {
 function mapStateToProps(state, ownProps) {
   return {
     errorMessage: state.errorMessage,
-    inputValue: ownProps.location.pathname.substring(1)
+    auth: state.auth
+    // inputValue: ownProps.location.pathname.substring(1)
   }
 }
 

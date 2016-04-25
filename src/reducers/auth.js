@@ -17,13 +17,13 @@ export default function auth(state=initial_auth_state, action) {
             return Object.assign({}, state, {
                 isFetching: false,
                 isLoggedIn: true,
-                errorMsg: '',
+                error: '',
             });
         case C.LOGIN_FAILURE:
             return Object.assign({}, state, {
                 isFetching: false,
                 isLoggedIn: false,
-                errorMsg: action.message
+                error: action.error
             });
         default:
             return state;
