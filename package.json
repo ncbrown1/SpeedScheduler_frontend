@@ -1,9 +1,9 @@
 {
-  "name": "speedscheduler",
-  "version": "1.0.0",
+  "name": "speedscheduler-frontend",
+  "version": "1.0.1",
   "description": "Speedy scheduling as a service web application",
-  "repository": "https://github.com/jrcryan/SpeedScheduler",
-  "main": "index.js",
+  "repository": "https://github.com/ncbrown1/SpeedScheduler_frontend",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
