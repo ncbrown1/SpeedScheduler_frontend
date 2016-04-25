@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { resetErrorMessage } from '../actions/errorMessage';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 class App extends Component {
   constructor(props) {
@@ -41,13 +43,12 @@ class App extends Component {
     const { children } = this.props;
     return (
       <div>
-        <h1>Hello World!</h1>
-        {/*<Navbar />*/}
-        {/*<Explore value={inputValue}
-                 onChange={this.handleChange} />*/}
-        <hr />
-        {this.renderErrorMessage()}
-        {children}
+        <Navbar />
+        <div className="container">
+          {this.renderErrorMessage()}
+          {children}
+        </div>
+        <Footer />
       </div>
     );
   }
