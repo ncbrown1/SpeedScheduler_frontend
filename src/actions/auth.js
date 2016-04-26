@@ -19,7 +19,7 @@ function receiveLogin(user) {
         type: C.LOGIN_SUCCESS,
         isFetching: false,
         isLoggedIn: true,
-        user: user,
+        username: user.username,
         token: user.token
     };
 }
@@ -58,6 +58,8 @@ export function loginUser(creds) {
             // If login was successful, set the
             // token into local storage
             localStorage.setItem('jwt_token', user.token);
+            localStorage.setItem('username', creds.username);
+
             // Dispatch the success action
             dispatch(receiveLogin(Object.assign({}, user, {username: creds.username})));
         }).catch(err => {
@@ -88,6 +90,7 @@ export function logoutUser() {
     return dispatch => {
         dispatch(requestLogout());
         localStorage.removeItem('jwt_token');
+        localStorage.removeItem('username');
         dispatch(receiveLogout());
     }
 }

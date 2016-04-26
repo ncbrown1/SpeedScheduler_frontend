@@ -2,7 +2,8 @@ import C from '../constants';
 
 const initial_auth_state = {
     isFetching: false,
-    isLoggedIn: localStorage.getItem('jwt_token') ? true : false
+    isLoggedIn: localStorage.getItem('jwt_token') ? true : false,
+    username: localStorage.getItem('username') || ""
 };
 
 export default function auth(state=initial_auth_state, action) {
@@ -17,7 +18,7 @@ export default function auth(state=initial_auth_state, action) {
             return Object.assign({}, state, {
                 isFetching: false,
                 isLoggedIn: true,
-                user: action.user,
+                username: action.username,
                 error: '',
             });
         case C.LOGIN_FAILURE:
