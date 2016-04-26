@@ -6,6 +6,9 @@ import { logoutUser } from '../actions/auth';
 import AppNav from '../components/AppNav';
 import Footer from '../components/Footer';
 
+
+import { fetchUser } from '../actions/entities'; // remove this
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -76,7 +79,9 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   return {
     resetErrorMessage: () => dispatch(resetErrorMessage()),
-    logoutUser: () => dispatch(logoutUser())
+    logoutUser: () => dispatch(logoutUser()),
+
+    fetchUser: (id) => dispatch(fetchUser(id)) // remove thsi
   }
 }
 
