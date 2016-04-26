@@ -1,12 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { browserHistory } from 'react-router';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
-
-import { logoutUser } from '../actions/auth';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Button } from 'react-bootstrap';
 
 export default class AppNav extends Component {
   render() {
-    const { auth } = this.props;
+    const { auth, logout } = this.props;
     return (
       <Navbar inverse>
         <Navbar.Header>
@@ -18,16 +16,22 @@ export default class AppNav extends Component {
 
         <Navbar.Collapse>
           <Nav>
-            <NavItem eventKey={1} href="#">Link</NavItem>
-            <NavItem eventKey={2} href="#">Link</NavItem>
+            <NavItem eventKey={1} href="#">Organizations</NavItem>
+            <NavItem eventKey={2} href="#">Events</NavItem>
           </Nav>
           <Nav pullRight>
             {auth.isLoggedIn &&
-              <Logout onLogoutClick={() => dispatch(logoutUser()) } />
+              <NavDropdown eventKey={3} title={'Hello, ' + auth.user.username + '!'} id="basic-nav-dropdown">
+                <MenuItem eventKey={3.1} href="#">My Profile</MenuItem>
+                <MenuItem eventKey={3.2} href="#">My Organizations</MenuItem>
+                <MenuItem eventKey={3.3} href="#">My Events</MenuItem>
+                <MenuItem divider />
+                <MenuItem eventKey={3.3} href="/login" onClick={() => logout()}>Logout</MenuItem>
+              </NavDropdown>
             }
             {!auth.isLoggedIn &&
               <NavItem eventKey={1} href="/login" onClick={() => browserHistory.push('/login')}>
-                Some Login Link
+                Login
               </NavItem>
             }
           </Nav>
@@ -38,5 +42,6 @@ export default class AppNav extends Component {
 };
 
 AppNav.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired
 }

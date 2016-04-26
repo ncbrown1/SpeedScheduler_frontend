@@ -3,7 +3,7 @@
 const BASE_URL = 'http://localhost:3001/api/';
 
 function callApi(endpoint, authenticated) {
-    let token = localStorage.getItem('id_token') || null;
+    let token = localStorage.getItem('jwt_token') || null;
     let config = {};
 
     if (authenticated) {

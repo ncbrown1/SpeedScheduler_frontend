@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { resetErrorMessage } from '../actions/errorMessage';
+import { logoutUser } from '../actions/auth';
 import AppNav from '../components/AppNav';
 import Footer from '../components/Footer';
 
@@ -39,10 +40,10 @@ class App extends Component {
   }
 
   render() {
-    const { dispatch, auth, children } = this.props;
+    const { dispatch, auth, logoutUser, children } = this.props;
     return (
       <div>
-        <AppNav auth={auth} />
+        <AppNav auth={auth} logout={() => logoutUser()} />
         <div className="container">
           {this.renderErrorMessage()}
           {children}
@@ -58,6 +59,7 @@ App.propTypes = {
   errorMessage: PropTypes.string,
   resetErrorMessage: PropTypes.func.isRequired,
   auth: PropTypes.object,
+  logoutUser: PropTypes.func.isRequired,
   // inputValue: PropTypes.string.isRequired,
   // Injected by React Router
   children: PropTypes.node
@@ -71,6 +73,11 @@ function mapStateToProps(state, ownProps) {
   }
 }
 
-export default connect(mapStateToProps, {
-  resetErrorMessage
-})(App)
+function mapDispatchToProps(dispatch) {
+  return {
+    resetErrorMessage: () => dispatch(resetErrorMessage()),
+    logoutUser: () => dispatch(logoutUser())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

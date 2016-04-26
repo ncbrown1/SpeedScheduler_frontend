@@ -17,6 +17,7 @@ export default function auth(state=initial_auth_state, action) {
             return Object.assign({}, state, {
                 isFetching: false,
                 isLoggedIn: true,
+                user: action.user,
                 error: '',
             });
         case C.LOGIN_FAILURE:

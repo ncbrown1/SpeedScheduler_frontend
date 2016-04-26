@@ -19,6 +19,7 @@ function receiveLogin(user) {
         type: C.LOGIN_SUCCESS,
         isFetching: false,
         isLoggedIn: true,
+        user: user,
         token: user.token
     };
 }
@@ -43,7 +44,8 @@ export function loginUser(creds) {
         dispatch(requestLogin(creds));
 
         return fetch(
-            'http://localhost:3001/token-auth/', config
+            // 'http://localhost:3001/token-auth/', config
+            '/src/static/auth.json'
         ).then(response => {
             if (!response.ok) {
                 // If there was a problem, we want
@@ -55,9 +57,9 @@ export function loginUser(creds) {
         }).then(user => {
             // If login was successful, set the
             // token into local storage
-            localStorage.setItem('token', user.token);
+            localStorage.setItem('jwt_token', user.token);
             // Dispatch the success action
-            dispatch(receiveLogin(user));
+            dispatch(receiveLogin(Object.assign({}, user, {username: creds.username})));
         }).catch(err => {
             console.log(err);
             dispatch(loginError("There was an error connecting to the server."));
@@ -85,7 +87,7 @@ function receiveLogout() {
 export function logoutUser() {
     return dispatch => {
         dispatch(requestLogout());
-        localStorage.removeItem('id_token');
+        localStorage.removeItem('jwt_token');
         dispatch(receiveLogout());
     }
 }
