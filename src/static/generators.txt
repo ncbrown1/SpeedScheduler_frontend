@@ -1,0 +1,64 @@
+for json-generator.com::
+
+events:
+[
+  '{{repeat(100,101)}}',
+  {
+    index: '{{index()}}',
+    name: '{{state()}} {{surname()}}',
+    host: '{{integer(1,5)}}',
+    org: '{{integer(1,20)}}',
+    capacity: '{{integer(1,100)}}',
+    start_time: '{{date(new Date(2014,0,1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}',
+    end_time: '{{date(new Date(2014,0,1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}'
+  }
+]
+
+orgs:
+[
+  '{{repeat(100,101)}}',
+  {
+    index: '{{index()}}',
+    name: '{{surname()}} {{lorem(1,"words")}}',
+    slug: function (tags) {
+        return this.name.toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[^\w\-]+/g, '')
+            .replace(/\-\-+/g, '-')
+            .replace(/^-+/, '')
+            .replace(/-+$/, '');
+    }
+  }
+]
+
+users:
+[
+  '{{repeat(100,101)}}',
+  {
+    index: '{{index()}}',
+    name: '{{firstName()}} {{surname()}}',
+    password: '{{company()}}',
+    email: '{{email()}}',
+    username: '{{email()}}'
+  }
+]
+
+user_events:
+[
+  '{{repeat(500)}}',
+  {
+    user: '{{integer(0,99)}}',
+    event: '{{integer(0,99)}}',
+    role: '{{random("admin", "host")}}'
+  }
+]
+
+user_orgs:
+[
+  '{{repeat(500)}}',
+  {
+    user: '{{integer(0,99)}}',
+    org: '{{integer(0,99)}}',
+    role: '{{random("admin", "member")}}'
+  }
+]

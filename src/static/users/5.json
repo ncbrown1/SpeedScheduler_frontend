@@ -1,5 +1,7 @@
 {
-    "username": "jessicahuang",
-    "email": "jessicahuang@example.com",
-    "name": "Jessica Huang"
+  "id": 5,
+  "name": "Casey Hebert",
+  "password": "Skybold",
+  "email": "caseyhebert@skybold.com",
+  "username": "caseyhebert@skybold.com"
 }

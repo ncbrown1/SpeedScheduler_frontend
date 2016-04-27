@@ -1,5 +1,7 @@
 {
-    "username": "jrcryan",
-    "email": "jrcryan@example.com",
-    "name": "Jenna Cryan"
+  "id": 4,
+  "name": "Riggs Ross",
+  "password": "Otherway",
+  "email": "riggsross@otherway.com",
+  "username": "riggsross@otherway.com"
 }

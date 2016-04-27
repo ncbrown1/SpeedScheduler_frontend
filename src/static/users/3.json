@@ -1,5 +1,7 @@
 {
-    "username": "oyvinyg",
-    "email": "oyvinyg@example.com",
-    "name": "Øyvind Nygard"
+  "id": 3,
+  "name": "Graciela Cote",
+  "password": "Uberlux",
+  "email": "gracielacote@uberlux.com",
+  "username": "gracielacote@uberlux.com"
 }
