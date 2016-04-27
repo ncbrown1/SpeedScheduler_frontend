@@ -16,8 +16,8 @@ export default class AppNav extends Component {
 
         <Navbar.Collapse>
           <Nav>
-            <NavItem eventKey={1} href="#">Organizations</NavItem>
-            <NavItem eventKey={2} href="#">Events</NavItem>
+            <NavItem eventKey={1} href="/orgs" onClick={() => browserHistory.push('/orgs')}>Organizations</NavItem>
+            <NavItem eventKey={2} href="/events" onClick={() => browserHistory.push('/events')}>Events</NavItem>
           </Nav>
           <Nav pullRight>
             {auth.isLoggedIn &&
