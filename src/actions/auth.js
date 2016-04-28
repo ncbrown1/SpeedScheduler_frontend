@@ -45,16 +45,18 @@ export function loginUser(creds) {
 
         return fetch(
             // 'http://localhost:3001/token-auth/', config
-            '/src/static/auth.json'
+            '/api/auth', config
+            // '/src/static/auth.json'
         ).then(response => {
-            if (!response.ok) {
-                // If there was a problem, we want
-                // to dispatch the error condition
-                dispatch(loginError(user.message));
-                return Promise.reject(user);
-            }
             return response.json();
         }).then(user => {
+            console.log(user);
+            if (user.error) {
+                // If there was a problem, we want
+                // to dispatch the error condition
+                dispatch(loginError(user.error));
+                return Promise.reject(user);
+            }
             // If login was successful, set the
             // token into local storage
             localStorage.setItem('jwt_token', user.token);
@@ -62,10 +64,7 @@ export function loginUser(creds) {
 
             // Dispatch the success action
             dispatch(receiveLogin(Object.assign({}, user, {username: creds.username})));
-        }).catch(err => {
-            console.log(err);
-            dispatch(loginError("There was an error connecting to the server."));
-        });
+        }).catch(err => {});
     };
 }
 
