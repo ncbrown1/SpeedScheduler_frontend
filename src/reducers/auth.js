@@ -27,6 +27,15 @@ export default function auth(state=initial_auth_state, action) {
                 isLoggedIn: false,
                 error: action.error
             });
+        case C.LOGOUT_REQUEST:
+            return Object.assign({}, state, {
+                isFetching: true,
+            });
+        case C.LOGOUT_SUCCESS:
+            return Object.assign({}, state, {
+                isFetching: false,
+                isLoggedIn: false
+            });
         default:
             return state;
     }

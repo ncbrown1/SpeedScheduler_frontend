@@ -8,16 +8,16 @@ export default class AppNav extends Component {
     return (
       <Navbar inverse>
         <Navbar.Header>
-          <Navbar.Brand onClick={() => browserHistory.push('/')} >
-            <a href="/">Speed Scheduler</a>
+          <Navbar.Brand onClick={() => browserHistory.push('/')} style={{cursor:"pointer"}}>
+            Speed Scheduler
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
 
         <Navbar.Collapse>
           <Nav>
-            <NavItem eventKey={1} href="/orgs" onClick={() => browserHistory.push('/orgs')}>Organizations</NavItem>
-            <NavItem eventKey={2} href="/events" onClick={() => browserHistory.push('/events')}>Events</NavItem>
+            <NavItem eventKey={1} onClick={() => browserHistory.push('/orgs')}>Organizations</NavItem>
+            <NavItem eventKey={2} onClick={() => browserHistory.push('/events')}>Events</NavItem>
           </Nav>
           <Nav pullRight>
             {auth.isLoggedIn &&
@@ -26,11 +26,11 @@ export default class AppNav extends Component {
                 <MenuItem eventKey={3.2} href="#">My Organizations</MenuItem>
                 <MenuItem eventKey={3.3} href="#">My Events</MenuItem>
                 <MenuItem divider />
-                <MenuItem eventKey={3.3} href="/login" onClick={() => logout()}>Logout</MenuItem>
+                <MenuItem eventKey={3.3} onClick={() => { logout(); browserHistory.push('/login'); }}>Logout</MenuItem>
               </NavDropdown>
             }
             {!auth.isLoggedIn &&
-              <NavItem eventKey={1} href="/login" onClick={() => browserHistory.push('/login')}>
+              <NavItem eventKey={1} onClick={() => browserHistory.push('/login')}>
                 Login
               </NavItem>
             }

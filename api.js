@@ -192,6 +192,7 @@ router.get('/users/:id/hosted_events', function(req,res) {
 router.post('/auth', function(req,res) {
     var username = req.body.username;
     var password = req.body.password;
+    var u;
 
     if (!username || !password) {
         return res.status(401).json({"error": "You must include username and password."});
@@ -200,7 +201,9 @@ router.post('/auth', function(req,res) {
     for (var i = 0; i < users.length; i++) {
         if (users[i].username == username) {
             if (users[i].password == password) {
-                return res.status(200).json({"token": "heres-a-token", "userid": users[i].id});
+                u = Object.assign({}, users[i]);
+                delete u.password;
+                return res.status(200).json({"token": "heres-a-token", "user": u});
             } else {
                 return res.status(401).json({"error": "Username and password do not match."});
             }
