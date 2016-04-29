@@ -7,7 +7,11 @@ export default function errorMessage(state = null, action) {
   if (type === C.RESET_ERROR_MESSAGE) {
     return null;
   } else if (error) {
-    return action.error;
+    if (typeof error === 'boolean') {
+        return action.payload.response.error;
+    } else if (typeof error === 'string') {
+        return action.error;
+    }
   }
 
   return state;

@@ -21,7 +21,7 @@ export default class AppNav extends Component {
           </Nav>
           <Nav pullRight>
             {auth.isLoggedIn &&
-              <NavDropdown eventKey={3} title={'Hello, ' + auth.username + '!'} id="basic-nav-dropdown">
+              <NavDropdown eventKey={3} title={'Hello, ' + localStorage.getItem('user_name') + '!'} id="basic-nav-dropdown">
                 <MenuItem eventKey={3.1} href="#">My Profile</MenuItem>
                 <MenuItem eventKey={3.2} href="#">My Organizations</MenuItem>
                 <MenuItem eventKey={3.3} href="#">My Events</MenuItem>

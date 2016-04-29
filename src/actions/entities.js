@@ -1,53 +1,74 @@
 import fetch from 'isomorphic-fetch';
 
 // the middleware to call the API for quotes
-import { CALL_API } from '../middleware/api';
+import { CALL_API } from 'redux-api-middleware';
 
 import C from '../constants';
 
-function requestUser(userId) {
+export function fetchUser(user_id) {
     return {
-        type: C.FETCH_USER_REQUEST,
-        userId
-    };
+        [CALL_API]: {
+            endpoint: C.API_ROOT + '/users/' + user_id,
+            method: 'GET',
+            types: [C.FETCH_USER_REQUEST, C.FETCH_USER_SUCCESS, C.FETCH_USER_FAILURE]
+        }
+    }
 }
 
-function receiveUser(user) {
+export function fetchEvent(event_id) {
     return {
-        type: C.FETCH_USER_SUCCESS,
-        user
-    };
+        [CALL_API]: {
+            endpoint: C.API_ROOT + '/events/' + event_id,
+            method: 'GET',
+            types: [C.FETCH_EVENT_REQUEST, C.FETCH_EVENT_SUCCESS, C.FETCH_EVENT_FAILURE]
+        }
+    }
 }
 
-function fetchUserError(message) {
+export function fetchOrg(org_id) {
     return {
-        type: C.FETCH_USER_FAILURE,
-        error: message
-    };
+        [CALL_API]: {
+            endpoint: C.API_ROOT + '/orgs/' + org_id,
+            method: 'GET',
+            types: [C.FETCH_ORG_REQUEST, C.FETCH_ORG_SUCCESS, C.FETCH_ORG_FAILURE]
+        }
+    }
 }
 
-export function fetchUser(userId) {
-    return dispatch => {
-        dispatch(requestUser(userId));
+// function requestUser(user_id) {
+//     return {
+//         type: C.FETCH_USER_REQUEST,
+//         isFetching: true,
+//         user_id
+//     };
+// }
 
-        return fetch(
-            // 'http://localhost:3001/token-auth/', config
-            '/src/static/users/'+userId+'.json'
-        ).then(response => {
-            if (!response.ok) {
-                // If there was a problem, we want
-                // to dispatch the error condition
-                dispatch(fetchUserError("Bad request"));
-                return Promise.reject(response);
-            }
-            return response.json();
-        }).then(user => {
-            console.log(user);
-            // Dispatch the success action
-            dispatch(receiveUser(user));
-        }).catch(err => {
-            console.log(err);
-            dispatch(fetchUserError("There was an error connecting to the server."));
-        });
-    };
-}
+// function receiveUser(user) {
+//     return {
+//         type: C.FETCH_USER_SUCCESS,
+//         isFetching: false,
+//         user
+//     };
+// }
+
+// function fetchUserError(message) {
+//     return {
+//         type: C.FETCH_USER_FAILURE,
+//         isFetching: false,
+//         error: message
+//     };
+// }
+
+// export function fetchUser(user_id) {
+//     return dispatch => {
+//         dispatch(requestUser(user_id));
+
+//         return fetch('/api/users/' + user_id)
+//             .then(response => { return response.json(); })
+//             .then(user => {
+//                 dispatch(receiveUser(user));
+//             }).catch(err => {
+//                 dispatch(fetchUserError("There was an error connecting to the server."));
+//             });
+//     };
+// }

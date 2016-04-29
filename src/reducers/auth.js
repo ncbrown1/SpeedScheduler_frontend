@@ -18,14 +18,14 @@ export default function auth(state=initial_auth_state, action) {
             return Object.assign({}, state, {
                 isFetching: false,
                 isLoggedIn: true,
-                username: action.username,
+                username: action.payload.user.username,
                 error: '',
             });
         case C.LOGIN_FAILURE:
             return Object.assign({}, state, {
                 isFetching: false,
                 isLoggedIn: false,
-                error: action.error
+                error: action.payload.response.error || ''
             });
         case C.LOGOUT_REQUEST:
             return Object.assign({}, state, {
