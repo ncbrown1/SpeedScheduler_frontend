@@ -8,7 +8,31 @@ body {
   margin: 0;
   padding-bottom: 6rem;
   min-height: 100%;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: Verdana, Arial, sans-serif;
+  background-color: #eee;
+}
+
+.AppNav {
+  background: #a82e2e;
+  border: #a82e2e;
+  width: 100%;
+  border-radius: 0;
+}
+
+.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-nav>li>a {
+  color: #ffe !important;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+  background-color: #862424;
+}
+
+.ss-brand {
+  cursor: pointer;
+  font-family: "Brush Script MT";
+  font-size: 2em;
+  color: white;
 }
 
 .footer {
@@ -17,7 +41,8 @@ body {
   bottom: 0;
   left: 0;
   padding: 1rem;
-  background-color: #efefef;
+  background-color: #222;
+  color: #efefef;
   text-align: center;
 }
 
@@ -25,4 +50,9 @@ body {
     max-width: 500px;
     padding: 15px;
     margin: 0 auto;
+}
+
+@font-face{
+  font-family:"Brush Script MT";
+  src:url("/fonts/brush.ttf");
 }

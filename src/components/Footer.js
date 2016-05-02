@@ -7,7 +7,7 @@ export default class NavBar extends React.Component {
     return (
       <footer className="footer">
         <div className="container">
-          <p className="text-muted">Copyright &copy; 2016 SpeedScheduler LLC. All rights reserved.</p>
+          <p>Copyright &copy; 2016 SpeedScheduler LLC. All rights reserved.</p>
         </div>
       </footer>
     );

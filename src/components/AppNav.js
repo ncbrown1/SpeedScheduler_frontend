@@ -6,9 +6,9 @@ export default class AppNav extends Component {
   render() {
     const { auth, logout } = this.props;
     return (
-      <Navbar inverse>
+      <Navbar className="AppNav" inverse>
         <Navbar.Header>
-          <Navbar.Brand onClick={() => browserHistory.push('/')} style={{cursor:"pointer"}}>
+          <Navbar.Brand onClick={() => browserHistory.push('/')} className="ss-brand">
             Speed Scheduler
           </Navbar.Brand>
           <Navbar.Toggle />
