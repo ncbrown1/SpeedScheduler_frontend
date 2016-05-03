@@ -10,14 +10,14 @@ class Login extends Component {
       browserHistory.push(next ? next : '/');
     }
     return (
-      <div className="main-form">
+      <form className="main-form" onSubmit={this.handleLogin}>
         <h1>Sign In</h1>
         <label for="username">Username:</label>
         <input type="text" ref="username" className="form-control" placeholder="Username" />
         <label for="password">Password:</label>
         <input type="password" ref="password" className="form-control" placeholder="Password" />
         <br/>
-        <button onClick={(event) => this.handleClick(event)} className="btn btn-social btn-primary form-control" style={{textAlign:"left"}}>
+        <button onClick={(event) => this.handleLogin(event)} className="btn btn-social btn-primary form-control" style={{textAlign:"left"}}>
           <span className="fa fa-user"></span>
           Sign in
         </button>
@@ -26,11 +26,11 @@ class Login extends Component {
           <span className="fa fa-google"></span>
           Sign in with Google
         </button>
-      </div>
+      </form>
     );
   }
 
-  handleClick(event) {
+  handleLogin(event) {
     const username = this.refs.username;
     const password = this.refs.password;
     const creds = {

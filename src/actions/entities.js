@@ -35,6 +35,16 @@ export function fetchOrg(org_id) {
     }
 }
 
+export function fetchOrgs() {
+    return {
+        [CALL_API]: {
+            endpoint: C.API_ROOT + '/orgs',
+            method: 'GET',
+            types: [C.FETCH_ORGS_REQUEST, C.FETCH_ORGS_SUCCESS, C.FETCH_ORGS_FAILURE]
+        }
+    }
+}
+
 // function requestUser(user_id) {
 //     return {
 //         type: C.FETCH_USER_REQUEST,

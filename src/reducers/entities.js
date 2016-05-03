@@ -42,6 +42,22 @@ export default function entities(state=initial_entities_state, action) {
                 error: action.payload.error
             });
 
+        case C.FETCH_ORGS_REQUEST:
+            return Object.assign({}, state, {
+                isFetching: true
+            });
+        case C.FETCH_ORGS_SUCCESS:
+            const new_orgs = action.payload.map((i) => { return {[i.id]:i} });
+            return Object.assign({}, state, {
+                isFetching: false,
+                orgs: Object.assign({}, state.orgs, ...new_orgs)
+            });
+        case C.FETCH_ORGS_FAILURE:
+            return Object.assign({}, state, {
+                isFetching: false,
+                error: action.payload.error
+            });
+
         case C.FETCH_EVENT_REQUEST:
             return Object.assign({}, state, {
                 isFetching: true

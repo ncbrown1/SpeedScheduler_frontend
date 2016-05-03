@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
-export default class NavBar extends React.Component {
+export default class Footer extends React.Component {
   render() {
     return (
       <footer className="footer">
