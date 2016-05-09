@@ -1,14 +1,47 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React, { Component, PropTypes } from 'react';
+import { Link, browserHistory } from 'react-router';
+import { connect } from 'react-redux';
+import Search from './Search';
+import { fetchEvent } from '../actions/entities';
 
-export default class ShowEvent extends React.Component {
+class ShowEvent extends Component {
+
+  componentDidMount() {
+    const eventid = this.props.params.event;
+    const { events, fetchEvent } = this.props;
+    if (events[eventid] === undefined) {
+        fetchEvent(eventid);
+    }
+  }
+
   render() {
+    const eventid = this.props.params.event;
+    const { events, fetchEvent } = this.props;
     return (
       <div>
-        <h1>Show Event Page: {this.props.params.event}</h1>
+        <h1>Show Event Page: {events[eventid].name}</h1>
         <p>Go to <Link to="/">Home Page</Link></p>
-        <p>{JSON.stringify(this.props)}</p>
+        <p>{JSON.stringify(events[eventid])}</p>
       </div>
     );
   }
 };
+
+ShowEvent.propTypes = {
+  events: PropTypes.object.isRequired,
+  fetchEvent: PropTypes.func.isRequired
+}
+
+function mapStateToProps(state) {
+  return {
+    events: state.entities.events
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchEvent: (id) => dispatch(fetchEvent(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShowEvent);

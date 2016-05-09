@@ -25,6 +25,22 @@ export default function entities(state=initial_entities_state, action) {
                 error: action.payload.error
             });
 
+        case C.FETCH_USERS_REQUEST:
+            return Object.assign({}, state, {
+                isFetching: true
+            });
+        case C.FETCH_USERS_SUCCESS:
+            const new_users = action.payload.map((i) => { return {[i.id]:i} });
+            return Object.assign({}, state, {
+                isFetching: false,
+                users: Object.assign({}, state.users, ...new_users)
+            });
+        case C.FETCH_USERS_FAILURE:
+            return Object.assign({}, state, {
+                isFetching: false,
+                error: action.payload.error
+            });
+
         case C.FETCH_ORG_REQUEST:
             return Object.assign({}, state, {
                 isFetching: true
@@ -65,11 +81,27 @@ export default function entities(state=initial_entities_state, action) {
         case C.FETCH_EVENT_SUCCESS:
             return Object.assign({}, state, {
                 isFetching: false,
-                users: Object.assign({}, state.users, {
+                events: Object.assign({}, state.events, {
                     [action.payload.id]: action.payload
                 })
             });
         case C.FETCH_EVENT_FAILURE:
+            return Object.assign({}, state, {
+                isFetching: false,
+                error: action.payload.error
+            });
+
+        case C.FETCH_EVENTS_REQUEST:
+            return Object.assign({}, state, {
+                isFetching: true
+            });
+        case C.FETCH_EVENTS_SUCCESS:
+            const new_events = action.payload.map((i) => { return {[i.id]:i} });
+            return Object.assign({}, state, {
+                isFetching: false,
+                events: Object.assign({}, state.events, ...new_events)
+            });
+        case C.FETCH_EVENTS_FAILURE:
             return Object.assign({}, state, {
                 isFetching: false,
                 error: action.payload.error
