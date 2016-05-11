@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { loginUser } from '../actions/auth';
+import { loginUser } from '../ducks/auth';
 
 class Login extends Component {
   render() {

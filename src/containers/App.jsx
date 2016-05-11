@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { resetErrorMessage } from '../actions/errorMessage';
-import { logoutUser } from '../actions/auth';
+import { resetErrorMessage } from '../ducks/errorMessage';
+import { logoutUser } from '../ducks/auth';
 import AppNav from '../components/AppNav';
 import Footer from '../components/Footer';
 
 
-import { fetchUser } from '../actions/entities'; // remove this
+import { fetchUser } from '../ducks/users'; // remove this
 
 class App extends Component {
   constructor(props) {

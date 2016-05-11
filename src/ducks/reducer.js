@@ -1,14 +1,19 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
+
 import auth from './auth';
-import entities from './entities';
+import events from './events';
+import orgs from './orgs';
+import users from './users';
 import errorMessage from './errorMessage';
-import { routerReducer as routing } from 'react-router-redux';
 
 const rootReducer = combineReducers({
+    routing: routerReducer,
     auth,
-    entities,
+    events,
+    orgs,
+    users,
     errorMessage,
-    routing
 });
 
 export default rootReducer;

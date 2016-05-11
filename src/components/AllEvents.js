@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link, browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import Search from './Search';
-import { fetchEvents } from '../actions/entities';
+import { fetchEvents } from '../ducks/events';
 
 export default class AllEvents extends Component {
 
@@ -45,7 +45,7 @@ AllEvents.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    events: state.entities.events
+    events: state.events
   }
 }
 

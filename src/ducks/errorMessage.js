@@ -1,10 +1,9 @@
-import C from '../constants';
+const RESET_ERROR_MESSAGE = 'ss/err/RESET_ERROR_MESSAGE';
 
-// Updates error message to notify about the failed fetches.
-export default function errorMessage(state = null, action) {
+export default function reducer(state = null, action) {
   const { type, error } = action;
 
-  if (type === C.RESET_ERROR_MESSAGE) {
+  if (type === RESET_ERROR_MESSAGE) {
     return null;
   } else if (error) {
     if (typeof error === 'boolean') {
@@ -15,4 +14,10 @@ export default function errorMessage(state = null, action) {
   }
 
   return state;
+}
+
+export function resetErrorMessage() {
+  return {
+    type: RESET_ERROR_MESSAGE
+  }
 }

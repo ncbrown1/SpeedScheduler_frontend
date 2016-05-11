@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link, browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import Search from './Search';
-import { fetchOrgs } from '../actions/entities';
+import { fetchOrgs } from '../ducks/orgs';
 
 class AllOrgs extends Component {
 
@@ -44,7 +44,7 @@ AllOrgs.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    orgs: state.entities.orgs
+    orgs: state.orgs
   }
 }
 

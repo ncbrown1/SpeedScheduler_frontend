@@ -1,3 +1,0 @@
-export default {
-    RESET_ERROR_MESSAGE: 'RESET_ERROR_MESSAGE'
-};
