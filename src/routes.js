@@ -5,9 +5,8 @@ import App from './containers/App';
 import LandingPage from './components/LandingPage';
 import Login from './components/Login';
 import NotFound from './components/NotFound';
-import AllOrgs from './components/AllOrgs';
+import AllOrgsView from './containers/AllOrgsView';
 import ShowOrg from './components/ShowOrg';
-// import AllEvents from './components/AllEvents';
 import AllEventsView from './containers/AllEventsView';
 import ShowEvent from './components/ShowEvent';
 
@@ -17,7 +16,7 @@ const routes = (
         <Route path="login" component={Login} />
 
         <Route path="orgs">
-            <IndexRoute component={AllOrgs} />
+            <IndexRoute component={AllOrgsView} />
             <Route path=":org">
                 <IndexRoute component={ShowOrg} />
                 <Route path="events">

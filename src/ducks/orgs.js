@@ -9,7 +9,7 @@ const FETCH_ORGS_REQUEST = 'ss/orgs/FETCH_ORGS_REQUEST';
 const FETCH_ORGS_SUCCESS = 'ss/orgs/FETCH_ORGS_SUCCESS';
 const FETCH_ORGS_FAILURE = 'ss/orgs/FETCH_ORGS_FAILURE';
 
-export default function reducer(state = {}, action = {}) {
+export default function reducer(state = {byId:{}}, action = {}) {
     switch (action.type) {
         case FETCH_ORG_REQUEST:
             return Object.assign({}, state, {
@@ -18,7 +18,9 @@ export default function reducer(state = {}, action = {}) {
         case FETCH_ORG_SUCCESS:
             return Object.assign({}, state, {
                 isFetching: false,
-                [action.payload.id]: action.payload
+                byId: Object.assign({}, state, {
+                    [action.payload.id]: action.payload
+                })
             });
         case FETCH_ORG_FAILURE:
             return Object.assign({}, state, {
@@ -33,8 +35,9 @@ export default function reducer(state = {}, action = {}) {
         case FETCH_ORGS_SUCCESS:
             const new_orgs = action.payload.map((i) => { return {[i.id]:i} });
             return Object.assign({}, state, {
-                isFetching: false
-            }, ...new_orgs);
+                isFetching: false,
+                byId: Object.assign({}, state.byId, ...new_orgs)
+            });
         case FETCH_ORGS_FAILURE:
             return Object.assign({}, state, {
                 isFetching: false,
