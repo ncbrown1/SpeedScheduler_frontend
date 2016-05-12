@@ -34,7 +34,7 @@ ShowEvent.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    events: state.events
+    events: state.events.byId
   }
 }
 
