@@ -23,7 +23,7 @@ export class AllEventsView extends React.Component {
     const org = this.props.params.org;
     const { events } = this.props;
     return (
-      <div>
+      <div className="container">
         <h1>All Events {org ? "For " + org : ""}</h1>
         <Search onSearch={(q) => console.log("passed ", q)} />
         <ul>

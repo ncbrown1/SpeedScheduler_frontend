@@ -5,17 +5,54 @@ export default class PageNotFound extends React.Component {
   render() {
     return (
       <div>
-        <h1>Welcome to Speed Scheduler!</h1>
-        <p>Lorem ipsum vestibulum taciti urna at fermentum velit taciti, enim himenaeos nisi potenti quisque semper lorem vestibulum scelerisque, leo dolor adipiscing luctus nibh magna conubia nam tortor congue pellentesque sed purus vulputate condimentum tempor ipsum, suspendisse turpis consequat blandit pharetra ac sapien pretium facilisis, sodales amet facilisis laoreet cras nulla malesuada est.</p>
-        <p>Ad luctus donec phasellus nullam quis rutrum sed habitasse eu pellentesque enim, elit volutpat fringilla molestie curabitur ipsum erat eleifend curae adipiscing lacus, vulputate nec iaculis netus lorem egestas sem ipsum interdum consequat felis habitant fermentum nunc pulvinar feugiat eleifend vulputate etiam, ad condimentum rhoncus cubilia litora cubilia porta.</p>
-        <p>Neque in tempus faucibus curabitur ornare lacus sollicitudin sit, malesuada facilisis sit curabitur nam imperdiet himenaeos, malesuada sodales porta ante lobortis porta integer ut curae quis ipsum nullam consequat vivamus lectus justo, sagittis eleifend auctor phasellus habitasse feugiat tellus, lacus pellentesque justo duis dolor fermentum felis dui ornare urna leo pellentesque tempus nostra rutrum gravida.</p>
-        <p>Sapien lacus fusce auctor volutpat a cubilia curabitur venenatis, sagittis eu semper metus at platea turpis lacinia eros, leo sagittis odio condimentum laoreet in curae nulla tristique viverra vitae lacus elementum libero lobortis libero, per duis vehicula porttitor eu cras nullam, turpis faucibus fames nisi luctus augue varius ullamcorper suscipit dui morbi lectus pellentesque molestie, fermentum fames per morbi lectus hendrerit malesuada, sem sodales iaculis habitant erat.</p>
-        <p>Non hac nibh hendrerit porttitor nisi quisque interdum dictum, convallis et habitasse condimentum erat nulla etiam, mauris volutpat nibh class pulvinar pharetra primis potenti enim facilisis maecenas erat senectus duis viverra odio, consequat aliquet non taciti ut tincidunt malesuada nulla accumsan, commodo tellus himenaeos eleifend orci erat libero orci nunc euismod aliquet amet congue consequat vulputate, donec mollis interdum fusce pharetra porta nec, bibendum orci condimentum accumsan tempus sapien.</p>
-        <p>Mauris leo placerat arcu ut feugiat donec ut torquent, morbi bibendum cursus pharetra feugiat tellus nisl suscipit, pretium diam fringilla lobortis in platea in pulvinar felis tempor massa aptent amet varius tellus fermentum non amet tempus, ac blandit ornare urna vehicula velit hendrerit fusce aliquam conubia, erat justo lobortis porta placerat eros interdum pellentesque euismod risus.</p>
-        <p>Taciti elementum lectus etiam sodales elementum curabitur at, sollicitudin conubia sapien condimentum tempus rutrum sodales curabitur, nisl nec placerat enim sem sapien rutrum suspendisse duis potenti tincidunt pulvinar ante amet sem proin.</p>
-        <p>Aliquam quis volutpat integer ligula quisque iaculis ante inceptos litora, quisque torquent cras dapibus per nec ullamcorper consectetur cursus pulvinar vehicula etiam quam imperdiet mattis cubilia praesent dictumst pulvinar, blandit mi rhoncus lorem porta praesent sociosqu nisl nullam non tortor ultrices aptent varius facilisis curabitur nulla sapien phasellus a condimentum aenean gravida lacinia est commodo, donec iaculis malesuada cras cursus sed iaculis nisi torquent sit scelerisque quisque tempus iaculis urna primis phasellus est elementum sagittis elementum congue tellus duis conubia.</p>
-        <p>Donec phasellus scelerisque nisl ipsum eros dapibus cursus lectus maecenas, tellus ad torquent donec sollicitudin torquent sollicitudin auctor, consectetur dictumst libero orci aptent donec ipsum tellus curae aliquam tristique interdum magna aliquam neque ullamcorper fames auctor risus, morbi sagittis habitant id convallis nulla placerat vestibulum aptent nam quisque sapien facilisis vivamus aliquam mollis sem fusce et quam donec, etiam ullamcorper placerat donec blandit placerat lectus donec vulputate hac ad justo sociosqu hendrerit augue est sit erat maecenas ut odio.</p>
-        <p>Auctor luctus aliquam risus vehicula sapien fames egestas semper aenean praesent vehicula, suspendisse phasellus nisl himenaeos nullam suscipit augue nec dui vel diam, integer lacus consectetur donec lacinia aenean sodales hac dictum senectus turpis auctor viverra accumsan vitae eu, velit nisi vitae per ante euismod, felis sociosqu arcu scelerisque sodales dui viverra sit velit potenti elit hac himenaeos sollicitudin malesuada.</p>
+    <header className="image-bg-fluid-height">
+        <img className="img-responsive img-center" src="/img/logo-with-text.png" alt=""/>
+    </header>
+
+    <section>
+        <div className="container">
+            <div className="row">
+                <div className="col-lg-8">
+                    <h1 className="section-heading">Schedule with Speed!</h1>
+                    <p className="lead section-lead">All it takes is a few clicks.</p>
+                    <p className="section-paragraph">With our revolutionary design and interface, you can get up and running with signing up for events that others are hosting!</p>
+                </div>
+                <div className="col-lg-4">
+                  <img src="/img/logo.png" alt="logo" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style={{backgroundColor:"white"}}>
+        <div className="container">
+            <div className="row">
+                <div className="col-lg-4">
+                  <img src="/img/get-going.png" alt="logo" />
+                </div>
+                <div className="col-lg-8">
+                    <h1 className="section-heading">Get Going in Minutes</h1>
+                    <p className="lead section-lead">Spend more time doing, and less time planning.</p>
+                    <p className="section-paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, suscipit, rerum quos facilis repellat architecto commodi officia atque nemo facere eum non illo voluptatem quae delectus odit vel itaque amet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div className="container">
+            <div className="row">
+                <div className="col-lg-8">
+                    <h1 className="section-heading">Create Events Yourself</h1>
+                    <p className="lead section-lead">Need to advertise your services? Look no further!</p>
+                    <p className="section-paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, suscipit, rerum quos facilis repellat architecto commodi officia atque nemo facere eum non illo voluptatem quae delectus odit vel itaque amet.</p>
+                </div>
+                <div className="col-lg-4">
+                  <img src="/img/computer-man.png" alt="logo" />
+                </div>
+            </div>
+        </div>
+    </section>
       </div>
     )
   }

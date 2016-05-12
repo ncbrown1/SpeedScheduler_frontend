@@ -22,7 +22,7 @@ export class AllOrgsView extends React.Component {
   render () {
     const { orgs } = this.props;
     return (
-      <div>
+      <div className="container">
         <h1>All Orgs Page</h1>
         <Search onSearch={(q) => console.log("passed ", q)} />
         <ul>

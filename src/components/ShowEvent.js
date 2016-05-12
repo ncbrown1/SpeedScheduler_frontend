@@ -18,7 +18,7 @@ class ShowEvent extends Component {
     const eventid = this.props.params.event;
     const { events, fetchEvent } = this.props;
     return (
-      <div>
+      <div className="container">
         <h1>Show Event Page: {events[eventid].name}</h1>
         <p>Go to <Link to="/">Home Page</Link></p>
         <p>{JSON.stringify(events[eventid])}</p>

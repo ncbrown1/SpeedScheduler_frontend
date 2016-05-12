@@ -47,7 +47,7 @@ class App extends Component {
     return (
       <div>
         <AppNav auth={auth} logout={() => logoutUser()} />
-        <div className="container">
+        <div>
           {this.renderErrorMessage()}
           {children}
         </div>
