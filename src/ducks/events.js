@@ -9,7 +9,14 @@ const FETCH_EVENTS_REQUEST = 'ss/events/FETCH_EVENTS_REQUEST';
 const FETCH_EVENTS_SUCCESS = 'ss/events/FETCH_EVENTS_SUCCESS';
 const FETCH_EVENTS_FAILURE = 'ss/events/FETCH_EVENTS_FAILURE';
 
-export default function reducer(state = {byId:{}}, action = {}) {
+const FETCH_TIMES_REQUEST = 'ss/events/FETCH_TIMES_REQUEST';
+const FETCH_TIMES_SUCCESS = 'ss/events/FETCH_TIMES_SUCCESS';
+const FETCH_TIMES_FAILURE = 'ss/events/FETCH_TIMES_FAILURE';
+
+export default function reducer(state = {
+    isFetching: true,
+    byId:{}
+    }, action = {}) {
     switch (action.type) {
         case FETCH_EVENT_REQUEST:
             return Object.assign({}, state, {
@@ -18,7 +25,7 @@ export default function reducer(state = {byId:{}}, action = {}) {
         case FETCH_EVENT_SUCCESS:
             return Object.assign({}, state, {
                 isFetching: false,
-                byId: Object.assign({}, state, {
+                byId: Object.assign({}, state.byId, {
                     [action.payload.id]: action.payload
                 })
             });

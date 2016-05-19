@@ -9,6 +9,7 @@ import AllOrgsView from './containers/AllOrgsView';
 import ShowOrg from './components/ShowOrg';
 import AllEventsView from './containers/AllEventsView';
 import ShowEvent from './components/ShowEvent';
+import ShowEventView from './containers/ShowEventView';
 
 const routes = (
     <Route path="/" component={App}>
@@ -21,14 +22,14 @@ const routes = (
                 <IndexRoute component={ShowOrg} />
                 <Route path="events">
                     <IndexRoute component={AllEventsView} />
-                    <Route path=":event" component={ShowEvent} />
+                    <Route path=":event" component={ShowEventView} />
                 </Route>
             </Route>
         </Route>
 
         <Route path="events">
             <IndexRoute component={AllEventsView} />
-            <Route path=":event" component={ShowEvent} />
+            <Route path=":event" component={ShowEventView} />
         </Route>
 
         <Route path="*" component={NotFound} />
