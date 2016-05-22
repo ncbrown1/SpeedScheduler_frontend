@@ -1,5 +1,5 @@
 import { CALL_API } from 'redux-api-middleware';
-import { API_ROOT } from '../constants';
+import { API_ROOT2 } from '../constants';
 
 const LOGIN_REQUEST = 'ss/auth/LOGIN_REQUEST';
 const LOGIN_SUCCESS = 'ss/auth/LOGIN_SUCCESS';
@@ -10,7 +10,7 @@ const LOGOUT_FAILURE = 'ss/auth/LOGOUT_FAILURE';
 
 const initial_state = {
     isFetching: false,
-    isLoggedIn: localStorage.getItem('jwt_token') ? true : false,
+    isLoggedIn: localStorage.getItem('id_token') ? true : false,
     username: localStorage.getItem('username') || ""
 };
 
@@ -26,14 +26,14 @@ export default function reducer(state=initial_state, action={}) {
             return Object.assign({}, state, {
                 isFetching: false,
                 isLoggedIn: true,
-                username: action.payload.user.username,
-                error: '',
+                username: action.payload.username,
+                error: 'awdf',
             });
         case LOGIN_FAILURE:
             return Object.assign({}, state, {
                 isFetching: false,
                 isLoggedIn: false,
-                error: action.payload.response.error || ''
+                error: action.payload || 'lasdjhfa'
             });
         case LOGOUT_REQUEST:
             return Object.assign({}, state, {
@@ -52,7 +52,7 @@ export default function reducer(state=initial_state, action={}) {
 export function loginUser(creds) {
     return {
         [CALL_API]: {
-            endpoint: API_ROOT + '/auth',
+            endpoint: API_ROOT2 + '/api-token-auth/',
             method: 'POST',
             types: [
                 LOGIN_REQUEST,
@@ -60,9 +60,9 @@ export function loginUser(creds) {
                     type: LOGIN_SUCCESS,
                     payload: (action, state, res) => {
                         return res.json().then(json => {
-                            localStorage.setItem('jwt_token', json.token);
-                            localStorage.setItem('user_name', json.user.name);
-                            localStorage.setItem('user_id', json.user.id);
+                            localStorage.setItem('id_token', json.token);
+                            // localStorage.setItem('user_name', json.user.name);
+                            // localStorage.setItem('user_id', json.user.id);
                             return json;
                         }).catch(err => {});
                     }
@@ -73,6 +73,33 @@ export function loginUser(creds) {
             body: JSON.stringify(creds)
         }
     };
+}
+
+export function getCurrentUser() {
+    return {
+        [CALL_API]: {
+            endpoint: API_ROOT2 + '/profile/',
+            method: 'GET',
+            types: [
+                LOGIN_REQUEST,
+                {
+                    type: LOGIN_SUCCESS,
+                    payload: (action, state, res) => {
+                        return res.json().then(json => {
+                            localStorage.setItem('user_name', json.first_name);
+                            localStorage.setItem('user_id', json.id);
+                            return json;
+                        }).catch(err => {});
+                    }
+                },
+                LOGIN_FAILURE
+            ],
+            headers: {
+                'Content-Type':'application/json',
+                'Authorization':'Token '+localStorage.getItem('id_token')
+            },
+        }
+    }
 }
 
 function requestLogout() {
@@ -95,7 +122,7 @@ function receiveLogout() {
 export function logoutUser() {
     return dispatch => {
         dispatch(requestLogout());
-        localStorage.removeItem('jwt_token');
+        localStorage.removeItem('id_token');
         localStorage.removeItem('user_name');
         localStorage.removeItem('user_id');
         dispatch(receiveLogout());

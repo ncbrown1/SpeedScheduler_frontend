@@ -7,7 +7,7 @@ export default function reducer(state = null, action) {
     return null;
   } else if (error) {
     if (typeof error === 'boolean') {
-        return action.payload.response.error;
+        return JSON.stringify(action.payload);
     } else if (typeof error === 'string') {
         return action.error;
     }

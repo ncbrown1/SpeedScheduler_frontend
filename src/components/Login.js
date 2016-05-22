@@ -1,16 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { loginUser } from '../ducks/auth';
+import { loginUser, getCurrentUser } from '../ducks/auth';
 
 class Login extends Component {
   render() {
     const { auth, next } = this.props;
     if (auth.isLoggedIn) {
+      this.props.getCurrentUser();
       browserHistory.push(next ? next : '/');
     }
     return (
-      <form className="main-form" onSubmit={this.handleLogin}>
+      <form className="main-form" onSubmit={this.handleLogin.bind(this)}>
         <h1>Sign In</h1>
         <label for="username">Username:</label>
         <input type="text" ref="username" className="form-control" placeholder="Username" />
@@ -31,6 +32,7 @@ class Login extends Component {
   }
 
   handleLogin(event) {
+    event.preventDefault();
     const username = this.refs.username;
     const password = this.refs.password;
     const creds = {
@@ -59,7 +61,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    loginUser: (creds) => dispatch(loginUser(creds))
+    loginUser: (creds) => dispatch(loginUser(creds)),
+    getCurrentUser: () => dispatch(getCurrentUser()),
   };
 }
 
