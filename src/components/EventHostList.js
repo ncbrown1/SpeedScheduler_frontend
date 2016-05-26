@@ -13,9 +13,12 @@ export class EventHostList extends Component {
       <div>
         <h2>Hosts</h2>
         <ul style={{paddingLeft:"1em"}}>
-        {Object.keys(hosts).map((id) =>
+        {hosts && Object.keys(hosts).map((id) =>
             <EventHostListItem id={id} host={hosts[id]}/>
-        )}</ul>
+        )}
+        {(hosts == undefined || Object.keys(hosts).length == 0) &&
+            <b>No Event Hosts yet...</b>
+        }</ul>
       </div>
     )
   }

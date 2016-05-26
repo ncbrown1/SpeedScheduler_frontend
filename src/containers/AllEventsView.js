@@ -12,18 +12,15 @@ type Props = {
 export class AllEventsView extends React.Component {
   props: Props;
 
-  componentDidMount() {
+  componentWillMount() {
     const { events, fetchEvents } = this.props;
-    if (Object.keys(events).length == 0) {
-      fetchEvents();
-    }
+    fetchEvents();
   }
 
   render () {
     const org = this.props.params.org;
     const { events } = this.props;
-    return (
-      <div className="container">
+    return (      <div className="container">
         <h1>All Events {org ? "For " + org : ""}</h1>
         <Search onSearch={(q) => console.log("passed ", q)} />
         <ul>

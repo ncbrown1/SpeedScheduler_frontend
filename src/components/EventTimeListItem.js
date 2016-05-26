@@ -24,11 +24,17 @@ export class EventTimeListItem extends Component {
     const astyle = {
         cursor:"pointer"
     }
+    let d1 = new Date(Date.parse(time.start_time));
+    let d2 = new Date(Date.parse(time.end_time));
     return (
       <li key={id} style={style} className="well">
-        <p style={pstyle}><b>Date:</b> {time.date}</p>
-        <p style={pstyle}><b>Start:</b> {time.start_time}</p>
-        <p style={pstyle}><b>End:</b> {time.end_time}</p>
+        {/*<p style={pstyle}><b>Date:</b> {time.date}</p>*/}
+        <p style={pstyle}><b>Start:</b> {d1.toDateString()}</p>
+        <p style={pstyle}><b>Start:</b> {d1.toLocaleTimeString()}</p>
+        <hr style={pstyle}/>
+        <p style={pstyle}><b>End:</b> {d2.toDateString()}</p>
+        <p style={pstyle}><b>End:</b> {d2.toLocaleTimeString()}</p>
+        <hr style={pstyle}/>
         <p style={pstyle}><a style={astyle}>Sign up</a></p>
       </li>
     )

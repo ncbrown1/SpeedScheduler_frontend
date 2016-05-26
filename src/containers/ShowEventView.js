@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchEvent } from '../ducks/events';
+import { fetchEvent, fetchHosts, fetchTimes } from '../ducks/events';
 import Loading from '../components/Loading';
 import EventHostList from '../components/EventHostList';
 import EventTimeList from '../components/EventTimeList';
@@ -15,13 +15,15 @@ export class ShowEventView extends Component {
 
   componentWillMount() {
     const eventid = this.props.params.event;
-    const { events, fetchEvent } = this.props;
+    const { events, fetchEvent, fetchHosts, fetchTimes } = this.props;
+    fetchTimes(eventid);
+    fetchHosts(eventid);
     fetchEvent(eventid);
   }
 
   render () {
     const eventid = this.props.params.event;
-    const { isFetchingEvent, events, fetchEvent } = this.props;
+    const { isFetchingEvent, isFetchingHosts, isFetchingTimes, events, fetchEvent } = this.props;
 
     const hosts = {
       1: {
@@ -189,15 +191,15 @@ export class ShowEventView extends Component {
 
     return (
       <div>
-        {isFetchingEvent &&
+        {(isFetchingEvent || isFetchingHosts || isFetchingTimes) &&
           <Loading/>
         }
-        {!isFetchingEvent &&
+        {!isFetchingEvent && !isFetchingHosts && !isFetchingTimes &&
           <div className="container">
             <h1>Event: {events[eventid].name}</h1>
-            <p>Lorem ipsum vestibulum taciti urna at fermentum velit taciti, enim himenaeos nisi potenti quisque semper lorem vestibulum scelerisque, leo dolor adipiscing luctus nibh magna conubia nam tortor congue pellentesque sed purus vulputate condimentum tempor ipsum, suspendisse turpis consequat blandit pharetra ac sapien pretium facilisis, sodales amet facilisis laoreet cras nulla malesuada est.</p>
-            <EventHostList hosts={hosts}/>
-            <EventTimeList hosts={hosts}/>
+            <p>{ events[eventid].description }</p>
+            <EventHostList hosts={events[eventid].hosts}/>
+            <EventTimeList hosts={events[eventid].hosts} times={events[eventid].times}/>
           </div>
         }
       </div>
@@ -207,13 +209,17 @@ export class ShowEventView extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isFetchingEvent: state.events.isFetching,
+    isFetchingEvent: state.events.isFetchingEvents,
+    isFetchingHosts: state.events.isFetchingHosts,
+    isFetchingTimes: state.events.isFetchingTimes,
     events: state.events.byId
   }
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchEvent: (id) => dispatch(fetchEvent(id))
+    fetchEvent: (id) => dispatch(fetchEvent(id)),
+    fetchHosts: (id) => dispatch(fetchHosts(id)),
+    fetchTimes: (id) => dispatch(fetchTimes(id))
   }
 };
 

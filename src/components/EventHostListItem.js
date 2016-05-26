@@ -22,7 +22,7 @@ export class EventHostListItem extends Component {
             <img src="http://placehold.it/60x60"/>
         </span>
         <span style={{display:"inline-block"}}>
-            {host.name} <br/> ({host.email})
+            {host.first_name} <br/> ({host.email})
         </span>
       </li>
     )
