@@ -1,5 +1,5 @@
 import { CALL_API } from 'redux-api-middleware';
-import { API_ROOT } from '../constants';
+import { API_ROOT2 } from '../constants';
 
 const FETCH_USER_REQUEST = 'ss/users/FETCH_USER_REQUEST';
 const FETCH_USER_SUCCESS = 'ss/users/FETCH_USER_SUCCESS';
@@ -47,9 +47,13 @@ export default function reducer(state = {}, action = {}) {
 export function fetchUser(user_id) {
     return {
         [CALL_API]: {
-            endpoint: API_ROOT + '/users/' + user_id,
+            endpoint: API_ROOT + '/users/' + user_id + '/',
             method: 'GET',
-            types: [FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILURE]
+            types: [FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILURE],
+            headers: {
+                'Content-Type':'application/json',
+                'Authorization':'Token '+localStorage.getItem('id_token')
+            },
         }
     }
 }
@@ -57,9 +61,13 @@ export function fetchUser(user_id) {
 export function fetchUsers() {
     return {
         [CALL_API]: {
-            endpoint: API_ROOT + '/users',
+            endpoint: API_ROOT + '/users/',
             method: 'GET',
-            types: [FETCH_USERS_REQUEST, FETCH_USERS_SUCCESS, FETCH_USERS_FAILURE]
+            types: [FETCH_USERS_REQUEST, FETCH_USERS_SUCCESS, FETCH_USERS_FAILURE],
+            headers: {
+                'Content-Type':'application/json',
+                'Authorization':'Token '+localStorage.getItem('id_token')
+            },
         }
     }
 }

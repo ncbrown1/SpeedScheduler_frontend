@@ -1,5 +1,5 @@
 import { CALL_API } from 'redux-api-middleware';
-import { API_ROOT } from '../constants';
+import { API_ROOT2 } from '../constants';
 
 const FETCH_ORG_REQUEST = 'ss/orgs/FETCH_ORG_REQUEST';
 const FETCH_ORG_SUCCESS = 'ss/orgs/FETCH_ORG_SUCCESS';
@@ -33,7 +33,7 @@ export default function reducer(state = {byId:{}}, action = {}) {
                 isFetching: true
             });
         case FETCH_ORGS_SUCCESS:
-            const new_orgs = action.payload.map((i) => { return {[i.id]:i} });
+            const new_orgs = action.payload.results.map((i) => { return {[i.id]:i} });
             return Object.assign({}, state, {
                 isFetching: false,
                 byId: Object.assign({}, state.byId, ...new_orgs)
@@ -50,9 +50,13 @@ export default function reducer(state = {byId:{}}, action = {}) {
 export function fetchOrg(org_id) {
     return {
         [CALL_API]: {
-            endpoint: API_ROOT + '/orgs/' + org_id,
+            endpoint: API_ROOT2 + '/organizations/' + org_id + '/',
             method: 'GET',
-            types: [FETCH_ORG_REQUEST, FETCH_ORG_SUCCESS, FETCH_ORG_FAILURE]
+            types: [FETCH_ORG_REQUEST, FETCH_ORG_SUCCESS, FETCH_ORG_FAILURE],
+            headers: {
+                'Content-Type':'application/json',
+                'Authorization':'Token '+localStorage.getItem('id_token')
+            },
         }
     }
 }
@@ -60,9 +64,13 @@ export function fetchOrg(org_id) {
 export function fetchOrgs() {
     return {
         [CALL_API]: {
-            endpoint: API_ROOT + '/orgs',
+            endpoint: API_ROOT2 + '/organizations/',
             method: 'GET',
-            types: [FETCH_ORGS_REQUEST, FETCH_ORGS_SUCCESS, FETCH_ORGS_FAILURE]
+            types: [FETCH_ORGS_REQUEST, FETCH_ORGS_SUCCESS, FETCH_ORGS_FAILURE],
+            headers: {
+                'Content-Type':'application/json',
+                'Authorization':'Token '+localStorage.getItem('id_token')
+            },
         }
     }
 }
