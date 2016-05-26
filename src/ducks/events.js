@@ -1,5 +1,5 @@
 import { CALL_API } from 'redux-api-middleware';
-import { API_ROOT2 } from '../constants';
+import { API_ROOT } from '../constants';
 
 const FETCH_EVENT_REQUEST = 'ss/events/FETCH_EVENT_REQUEST';
 const FETCH_EVENT_SUCCESS = 'ss/events/FETCH_EVENT_SUCCESS';
@@ -109,7 +109,7 @@ export default function reducer(state = {
 export function fetchEvent(event_id) {
     return {
         [CALL_API]: {
-            endpoint: API_ROOT2 + '/events/' + event_id + '/',
+            endpoint: API_ROOT + '/events/' + event_id + '/',
             method: 'GET',
             types: [FETCH_EVENT_REQUEST, FETCH_EVENT_SUCCESS, FETCH_EVENT_FAILURE],
             headers: {
@@ -122,7 +122,7 @@ export function fetchEvent(event_id) {
 export function fetchEvents() {
     return {
         [CALL_API]: {
-            endpoint: API_ROOT2 + '/events/',
+            endpoint: API_ROOT + '/events/',
             method: 'GET',
             types: [FETCH_EVENTS_REQUEST, FETCH_EVENTS_SUCCESS, FETCH_EVENTS_FAILURE],
             headers: {
@@ -136,7 +136,7 @@ export function fetchEvents() {
 export function fetchHosts(event_id) {
     return {
         [CALL_API]: {
-            endpoint: API_ROOT2 + '/events/' + event_id + '/hosts/',
+            endpoint: API_ROOT + '/events/' + event_id + '/hosts/',
             method: 'GET',
             types: [FETCH_HOSTS_REQUEST, {'type': FETCH_HOSTS_SUCCESS,meta: { id: event_id }}, FETCH_HOSTS_FAILURE],
             headers: {
@@ -150,7 +150,7 @@ export function fetchHosts(event_id) {
 export function fetchTimes(event_id) {
     return {
         [CALL_API]: {
-            endpoint: API_ROOT2 + '/events/' + event_id + '/times/',
+            endpoint: API_ROOT + '/events/' + event_id + '/times/',
             method: 'GET',
             types: [FETCH_TIMES_REQUEST, {'type': FETCH_TIMES_SUCCESS,meta: { id: event_id }}, FETCH_TIMES_FAILURE],
             headers: {

@@ -31,10 +31,8 @@ export class EventTimeListItem extends Component {
         {/*<p style={pstyle}><b>Date:</b> {time.date}</p>*/}
         <p style={pstyle}><b>Start:</b> {d1.toDateString()}</p>
         <p style={pstyle}><b>Start:</b> {d1.toLocaleTimeString()}</p>
-        <hr style={pstyle}/>
         <p style={pstyle}><b>End:</b> {d2.toDateString()}</p>
         <p style={pstyle}><b>End:</b> {d2.toLocaleTimeString()}</p>
-        <hr style={pstyle}/>
         <p style={pstyle}><a style={astyle}>Sign up</a></p>
       </li>
     )

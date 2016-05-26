@@ -1,5 +1,5 @@
 import { CALL_API } from 'redux-api-middleware';
-import { API_ROOT2 } from '../constants';
+import { API_ROOT } from '../constants';
 
 const FETCH_ORG_REQUEST = 'ss/orgs/FETCH_ORG_REQUEST';
 const FETCH_ORG_SUCCESS = 'ss/orgs/FETCH_ORG_SUCCESS';
@@ -50,7 +50,7 @@ export default function reducer(state = {byId:{}}, action = {}) {
 export function fetchOrg(org_id) {
     return {
         [CALL_API]: {
-            endpoint: API_ROOT2 + '/organizations/' + org_id + '/',
+            endpoint: API_ROOT + '/organizations/' + org_id + '/',
             method: 'GET',
             types: [FETCH_ORG_REQUEST, FETCH_ORG_SUCCESS, FETCH_ORG_FAILURE],
             headers: {
@@ -64,7 +64,7 @@ export function fetchOrg(org_id) {
 export function fetchOrgs() {
     return {
         [CALL_API]: {
-            endpoint: API_ROOT2 + '/organizations/',
+            endpoint: API_ROOT + '/organizations/',
             method: 'GET',
             types: [FETCH_ORGS_REQUEST, FETCH_ORGS_SUCCESS, FETCH_ORGS_FAILURE],
             headers: {

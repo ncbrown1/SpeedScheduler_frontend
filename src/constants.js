@@ -1,2 +1,1 @@
-export const API_ROOT = '/api';
-export const API_ROOT2 = 'http://localhost:8000';
+export const API_ROOT = 'http://api.speedscheduler.com';

@@ -1,5 +1,5 @@
 import { CALL_API } from 'redux-api-middleware';
-import { API_ROOT2 } from '../constants';
+import { API_ROOT } from '../constants';
 
 const FETCH_USER_REQUEST = 'ss/users/FETCH_USER_REQUEST';
 const FETCH_USER_SUCCESS = 'ss/users/FETCH_USER_SUCCESS';
